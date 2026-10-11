@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10131f">
+<title>Mi meta de ahorro | $1.000.000</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0e17;--card:#141a29;--line:#29334a;--text:#f3f5fb;--muted:#9ba7bd;--green:#56e39b;--blue:#7b9cff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#1c2b43 0,transparent 42%),var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);padding:28px 16px 48px}.wrap{max-width:760px;margin:auto}.top{display:flex;align-items:center;gap:12px;margin-bottom:28px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--green),#8cf0cf);color:#0b241a;display:grid;place-items:center;font-weight:900;font-size:23px}.tag{font-size:12px;letter-spacing:2px;color:var(--green);font-weight:800}.top h1{font-size:18px;margin:3px 0 0}.hero,.panel{background:linear-gradient(145deg,rgba(24,32,50,.97),rgba(17,22,35,.97));border:1px solid var(--line);border-radius:24px;padding:clamp(22px,5vw,38px);box-shadow:0 18px 55px #0002}.eyebrow{color:var(--muted);font-size:13px;margin:0 0 12px}.big{font-size:clamp(38px,9vw,66px);font-weight:850;letter-spacing:-2.5px;margin:0;line-height:1.1;overflow-wrap:anywhere}.big span{color:var(--green)}.sub{color:var(--muted);margin:12px 0 25px}.bar-head{display:flex;justify-content:space-between;gap:10px;font-size:13px;margin-bottom:10px}.bar-head span:last-child{color:var(--green);font-weight:800}.bar{height:13px;background:#29334a;border-radius:99px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#36c987,var(--green));border-radius:99px;transition:width .35s}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.stat{background:#0d1220;border:1px solid #273149;border-radius:16px;padding:16px}.stat small{color:var(--muted);display:block;margin-bottom:8px}.stat strong{font-size:clamp(17px,4vw,24px);overflow-wrap:anywhere}.panel{margin-top:18px}.panel h2{font-size:20px;margin:0 0 6px}.desc{color:var(--muted);font-size:14px;margin:0 0 22px}.label{display:block;font-size:13px;color:#c6cede;margin:15px 0 8px}input{width:100%;border:1px solid #35415a;background:#0b1020;color:var(--text);border-radius:12px;padding:14px 15px;font:inherit;outline:none}input:focus{border-color:var(--green);box-shadow:0 0 0 3px #56e39b20}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{width:100%;border:0;border-radius:12px;padding:14px 16px;margin-top:16px;background:var(--green);color:#092116;font-weight:850;font-size:15px;cursor:pointer}.btn:hover{filter:brightness(1.06)}.secondary{background:#232d43;color:var(--text)}.danger{background:transparent;border:1px solid #70404b;color:#ff9aa8}.history{margin-top:20px}.history-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.history-head h3{font-size:16px}.history-list{list-style:none;padding:0;margin:0}.history-list li{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #29334a;font-size:14px}.history-list li:last-child{border-bottom:0}.positive{color:var(--green)}.negative{color:#ff9aa8}.empty{color:var(--muted);font-size:14px;padding:12px 0}.note{color:var(--muted);font-size:12px;line-height:1.6;text-align:center;margin:22px 8px 0}.toast{min-height:20px;color:var(--green);font-size:13px;margin-top:10px}@media(max-width:480px){body{padding:20px 12px}.row{grid-template-columns:1fr}.hero,.panel{border-radius:19px}.stats{gap:9px}.stat{padding:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="logo">$</div><div><div class="tag">MI PROYECTO PERSONAL</div><h1>Mi meta de ahorro</h1></div></header>
+<main>
+<section class="hero">
+<p class="eyebrow">OBJETIVO · UN MILLÓN DE PESOS COLOMBIANOS</p>
+<p class="big" id="savedBig">$0</p>
+<p class="sub" id="motivational">Cada peso cuenta. ¡Vamos paso a paso!</p>
+<div class="bar-head"><span>Progreso de mi meta</span><span id="percent">0%</span></div>
+<div class="bar" role="progressbar" aria-label="Progreso de ahorro" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress"><div class="fill" id="fill"></div></div>
+<div class="stats"><div class="stat"><small>🎯 Mi objetivo</small><strong id="goalLabel">$1.000.000</strong></div><div class="stat"><small>💰 Me falta ahorrar</small><strong id="remaining">$1.000.000</strong></div></div>
+</section>
+<section class="panel">
+<h2>Actualiza tus ahorros</h2><p class="desc">Escribe cuánto dinero has guardado o cuánto quieres añadir hoy.</p>
+<form id="addForm"><label class="label" for="amount">¿Cuánto ahorraste? (COP)</label><input id="amount" type="number" min="1" step="1" placeholder="Ej. 10000" required><label class="label" for="description">Nota (opcional)</label><input id="description" type="text" maxlength="80" placeholder="Ej. Ahorro de esta semana"><button class="btn" type="submit">＋ Añadir a mis ahorros</button></form>
+<div class="toast" id="toast" role="status"></div>
+<div class="row"><button class="btn secondary" id="withdrawBtn" type="button">− Registrar retiro</button><button class="btn secondary" id="goalBtn" type="button">✎ Cambiar mi meta</button></div>
+</section>
+<section class="panel history"><div class="history-head"><div><h2>Mi historial</h2><p class="desc" style="margin-bottom:0">Tus movimientos más recientes.</p></div></div><ul class="history-list" id="history"></ul><button class="btn danger" id="resetBtn" type="button">Borrar todos mis datos</button></section>
+</main>
+<p class="note">Tus datos se guardan en este navegador usando almacenamiento local. Si borras los datos del navegador o cambias de dispositivo, no se sincronizarán automáticamente. Esta página no se conecta a tu banco.</p>
+</div>
+<script>
+const DEFAULT_GOAL=1000000, KEY='miMetaAhorroV1';
+const money=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
+let state;
+try{state=JSON.parse(localStorage.getItem(KEY))}catch(e){state=null}
+if(!state||typeof state!=='object')state={saved:0,goal:DEFAULT_GOAL,history:[]};
+state.saved=Math.max(0,Number(state.saved)||0);state.goal=Math.max(1,Number(state.goal)||DEFAULT_GOAL);if(!Array.isArray(state.history))state.history=[];
+const $=id=>document.getElementById(id);
+function persist(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function render(){
+ const pct=Math.min(100,state.saved/state.goal*100),left=Math.max(0,state.goal-state.saved);
+ $('savedBig').textContent=money(state.saved);$('goalLabel').textContent=money(state.goal);$('remaining').textContent=money(left);$('percent').textContent=pct.toLocaleString('es-CO',{maximumFractionDigits:1})+'%';$('fill').style.width=pct+'%';$('progress').setAttribute('aria-valuenow',Math.round(pct));
+ $('motivational').textContent=state.saved>=state.goal?'¡LO LOGRASTE! Alcanzaste tu meta de ahorro. 🎉':state.saved===0?'Cada peso cuenta. ¡Vamos paso a paso!':'¡Vas muy bien! Sigue así, cada ahorro te acerca a tu meta.';
+ const list=$('history');list.innerHTML='';
+ if(!state.history.length){const li=document.createElement('li');li.className='empty';li.textContent='Todavía no hay movimientos. Añade tu primer ahorro arriba.';list.appendChild(li);return}
+ state.history.slice(0,12).forEach(item=>{const li=document.createElement('li'),left=document.createElement('span'),right=document.createElement('strong');left.textContent=item.note+' · '+item.date;right.textContent=(item.type==='add'?'+':'−')+money(item.amount);right.className=item.type==='add'?'positive':'negative';li.append(left,right);list.appendChild(li)});
+}
+function notify(msg){$('toast').textContent=msg;setTimeout(()=>$('toast').textContent='',3500)}
+function movement(type,amount,note){if(!Number.isFinite(amount)||amount<=0){notify('Escribe una cantidad válida.');return}if(type==='withdraw'&&amount>state.saved){notify('No puedes retirar más de lo que has ahorrado.');return}state.saved+=type==='add'?amount:-amount;state.history.unshift({type,amount,note:note|| (type==='add'?'Ahorro añadido':'Retiro'),date:new Date().toLocaleDateString('es-CO')});state.history=state.history.slice(0,100);persist();notify(type==='add'?'¡Ahorro registrado! Vas por buen camino.':'Retiro registrado.')}
+$('addForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number($('amount').value);movement('add',amount,$('description').value.trim()||'Ahorro añadido');$('amount').value='';$('description').value=''});
+$('withdrawBtn').addEventListener('click',()=>{const raw=prompt('¿Cuánto dinero retiraste? Escribe la cantidad en pesos, sin puntos.');if(raw===null)return;const amount=Number(raw);if(!Number.isFinite(amount)||amount<=0){notify('Escribe una cantidad válida.');return}if(amount>state.saved){notify('No puedes retirar más de lo que has ahorrado.');return}const note=prompt('¿Quieres añadir una nota para este retiro?','Retiro')||'Retiro';movement('withdraw',amount,note.trim())});
+$('goalBtn').addEventListener('click',()=>{const raw=prompt('¿Cuál será tu nueva meta en pesos colombianos?',String(state.goal));if(raw===null)return;const goal=Number(raw);if(!Number.isFinite(goal)||goal<=0){notify('La meta debe ser mayor que cero.');return}state.goal=Math.round(goal);persist();notify('Tu meta fue actualizada.')});
+$('resetBtn').addEventListener('click',()=>{if(!confirm('¿Seguro que quieres borrar tu ahorro y todo el historial? Esta acción no se puede deshacer.'))return;state={saved:0,goal:DEFAULT_GOAL,history:[]};persist();notify('Tus datos se reiniciaron.')});
+render();
+</script>
+</body>
+</html>
